@@ -17,6 +17,8 @@
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.43/dist/contrib/auto-render.min.js"></script>
 
   <style>
+
+    
     :root {
       --bg: #f6f8fb;
       --bg-soft: #eef2f8;
@@ -385,6 +387,25 @@
       border-color: color-mix(in srgb, var(--accent) 24%, var(--line));
     }
 
+    .abstract-dropdown summary::-webkit-details-marker {
+  display: none;
+}
+
+.abstract-dropdown summary::before {
+  content: "▸";
+  display: inline-block;
+  margin-right: 0.45rem;
+  transition: transform 0.2s ease;
+}
+
+.abstract-dropdown[open] summary::before {
+  transform: rotate(90deg);
+}
+
+.abstract-dropdown p {
+  margin: 0.75rem 0 0 1.25rem;
+}
+
     .meta {
       color: var(--muted);
       font-size: 0.93rem;
@@ -741,13 +762,13 @@
         <div class="card">
           <h3>Lorentzian Length Spaces</h3>
           <p class="muted">
-            I am interested in synthetic and low-regularity approaches to Lorentzian geometry, especially the extent to which classical causality and singularity theory can be formulated beyond the smooth setting.
+            I am interested in synthetic and low-regularity approaches to Lorentzian geometry, especially the extent to which classical Lorentzian causality theory can be formulated beyond the smooth manifold setting.
           </p>
         </div>
         <div class="card">
           <h3>Geometric and Analytical Methods in Relativity</h3>
           <p class="muted">
-            More broadly, I am drawn to problems in which differential geometry, causal theory, and analysis jointly clarify physically interpretable phenomena in spacetime geometry.
+            More broadly, I am drawn to problems in which differential geometry, causality theory, and analysis jointly clarify physically interpretable phenomena in Einstein's theory of general relativity.
           </p>
         </div>
       </div>
@@ -806,9 +827,16 @@
           <strong><a href="https://ef-geometry.univie.ac.at/kick-off-workshop-a-new-geometry-for-einsteins-theory-of-relativity-and-beyond/" target="_blank" rel="noopener noreferrer">Kick-off Workshop: A new geometry for Einstein’s theory of relativity and beyond</a></strong>
         </div>
         <div class="talk">
-          <div class="meta">November 2024 · <a href="https://ef-geometry-seminar.univie.ac.at" target="_blank" rel="noopener noreferrer">LOGOS Seminar</a>, Universität Wien</div>
-          <strong>Strong curvature naked singularities from gravitational collapse</strong>
-        </div>
+  <div class="meta">November 2024 · <a href="https://ef-geometry-seminar.univie.ac.at" target="_blank" rel="noopener noreferrer">LOGOS Seminar</a>, Universität Wien</div>
+  <strong>Strong curvature naked singularities from gravitational collapse</strong>
+
+  <details class="abstract-dropdown">
+    <summary>Abstract</summary>
+    <p class="muted small">
+      A spacetime singularity is called Tipler strong if the volume form acting on independent Jacobi fields defined by causal geodesics vanishes as the singularity is approached. Such a singularity is accompanied by a notion of strong Ricci curvature growth along incomplete geodesics. On the other hand, a naked singularity is one that can be identified by the past-incompleteness of causal geodesics. A key question concerning the cosmic censorship debate is whether there exists "generic" initial data that can collapse to a naked singularity in finite time. This question was initially addressed in the well known works of Datt (1938) and Oppenheimer and Snyder (1939) for homogeneous dust data. An alternative approach was developed by Joshi and Dwivedi (1993) for inhomogeneous dust. The idea is to consider the geodesic equation in the limit of the singularity. This yields an algebraic equation, and the polarity of its roots indicates whether the singularity is naked or not. One then imposes the sufficient condition for the existence of a Tipler strong singularity as given by Clarke and Królak (1985), in order to guarantee that any body approaching the naked singularity will be crushed to zero size, and thereby rendering these singularities as physically interesting. For spherically symmetric collapse, the formation of strong curvature naked singularities can be characterized by a single parameter related to the mass profile and physical radius of the collapsing matter shell. I will present the generalizations of this line of work in the following directions: (i) generalization to higher dimensions, (ii) generalization to all type-I matter fields.
+    </p>
+  </details>
+</div>
       </div>
     </section>
 
