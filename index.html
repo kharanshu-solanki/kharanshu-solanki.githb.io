@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Name | Personal Website</title>
+  <meta name="description" content="Personal academic website" />
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #121933;
+      --text: #e8ecf3;
+      --muted: #aeb7c8;
+      --line: #27304d;
+      --accent: #c7d2fe;
+      --accent-strong: #93c5fd;
+      --max: 980px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(180deg, #0b1020 0%, #0d1327 100%);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    a {
+      color: var(--accent-strong);
+      text-decoration: none;
+    }
+
+    a:hover { text-decoration: underline; }
+
+    .wrap {
+      width: min(var(--max), calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(12px);
+      background: rgba(11, 16, 32, 0.78);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.9rem 0;
+      gap: 1rem;
+    }
+
+    .brand {
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: var(--text);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .hero {
+      padding: 5rem 0 3rem;
+      display: grid;
+      grid-template-columns: 1.4fr 0.8fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .hero-card, .card {
+      background: rgba(18, 25, 51, 0.72);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 22px;
+      padding: 1.4rem;
+      box-shadow: 0 18px 50px rgba(0,0,0,0.24);
+    }
+
+    h1, h2, h3 {
+      line-height: 1.15;
+      margin-top: 0;
+    }
+
+    h1 {
+      font-size: clamp(2.3rem, 6vw, 4.3rem);
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.03em;
+    }
+
+    h2 {
+      font-size: clamp(1.5rem, 2vw, 2rem);
+      margin-bottom: 0.9rem;
+    }
+
+    .subtitle {
+      color: var(--accent);
+      font-size: 1.05rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .muted { color: var(--muted); }
+
+    .button-row {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      margin-top: 1.3rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.78rem 1rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: #182249;
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .btn.secondary {
+      background: transparent;
+    }
+
+    section {
+      padding: 1rem 0 1.8rem;
+    }
+
+    .section-title {
+      margin-bottom: 1rem;
+    }
+
+    .grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .two {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .publication, .project, .talk {
+      padding: 1rem 1.1rem;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.07);
+      background: rgba(255,255,255,0.02);
+    }
+
+    .meta {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 0.35rem;
+    }
+
+    ul.clean {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    ul.clean li + li {
+      margin-top: 0.9rem;
+    }
+
+    footer {
+      padding: 2rem 0 4rem;
+      color: var(--muted);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      margin-top: 2rem;
+    }
+
+    .small { font-size: 0.95rem; }
+
+    @media (max-width: 860px) {
+      .hero, .two { grid-template-columns: 1fr; }
+      nav { align-items: flex-start; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <nav>
+        <a class="brand" href="#top">Your Name</a>
+        <div class="nav-links small">
+          <a href="#about">About</a>
+          <a href="#research">Research</a>
+          <a href="#publications">Publications</a>
+          <a href="#projects">Projects</a>
+          <a href="#talks">Talks</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top" class="wrap">
+    <section class="hero">
+      <div class="hero-card">
+        <div class="subtitle">Mathematical Physics · General Relativity · Lorentzian Geometry</div>
+        <h1>Your Name</h1>
+        <p class="muted">
+          Master's student in mathematical physics. This site can serve as your official academic homepage: bio, research interests, publications, CV, talks, and contact details in one canonical place.
+        </p>
+        <div class="button-row">
+          <a class="btn" href="#publications">View Publications</a>
+          <a class="btn secondary" href="cv.pdf" target="_blank" rel="noopener noreferrer">Download CV</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Current Position</h2>
+        <p class="muted small">
+          Master's Student, University of Vienna<br>
+          Research interests: mathematical general relativity, spacetime inextendibility, Lorentzian length spaces, singularity theorems.
+        </p>
+        <hr style="border:0;border-top:1px solid rgba(255,255,255,0.08);margin:1rem 0;">
+        <p class="small"><strong>Email:</strong> your.email@example.com</p>
+        <p class="small"><strong>ORCID:</strong> add link</p>
+        <p class="small"><strong>Google Scholar:</strong> add link</p>
+        <p class="small"><strong>arXiv:</strong> add link</p>
+        <p class="small"><strong>GitHub:</strong> add link</p>
+      </div>
+    </section>
+
+    <section id="about">
+      <h2 class="section-title">About</h2>
+      <div class="card">
+        <p>
+          Replace this paragraph with a concise academic biography. State who you are, what you work on, where you are based, and what mathematical questions drive your research.
+        </p>
+      </div>
+    </section>
+
+    <section id="research">
+      <h2 class="section-title">Research</h2>
+      <div class="grid two">
+        <div class="card">
+          <h3>Spacetime Inextendibility</h3>
+          <p class="muted">Write 4–6 lines on your work on C⁰-inextendibility, Vaidya spacetimes, black hole interiors, or Lorentzian length spaces.</p>
+        </div>
+        <div class="card">
+          <h3>Singularity Theorems</h3>
+          <p class="muted">Write 4–6 lines on regularity questions, causal structure, Raychaudhuri-type arguments, and local/global visibility problems.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="publications">
+      <h2 class="section-title">Publications and Preprints</h2>
+      <div class="grid">
+        <article class="publication">
+          <div class="meta">2026 · Preprint</div>
+          <strong>Title of Paper</strong>
+          <div class="muted">Author Name(s)</div>
+          <p class="small">One-sentence summary of the paper. <a href="#">arXiv</a> · <a href="#">PDF</a></p>
+        </article>
+        <article class="publication">
+          <div class="meta">2025 · Journal</div>
+          <strong>Another Paper Title</strong>
+          <div class="muted">Author Name(s)</div>
+          <p class="small">One-sentence summary of the paper. <a href="#">Journal</a> · <a href="#">PDF</a></p>
+        </article>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2 class="section-title">Projects</h2>
+      <div class="grid two">
+        <div class="project">
+          <strong>Project One</strong>
+          <p class="small muted">Brief description of an ongoing or completed research project.</p>
+        </div>
+        <div class="project">
+          <strong>Project Two</strong>
+          <p class="small muted">Brief description of another project or collaboration.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="talks">
+      <h2 class="section-title">Talks</h2>
+      <div class="grid">
+        <div class="talk">
+          <div class="meta">Month Year · Institution / Event</div>
+          <strong>Talk Title</strong>
+          <p class="small muted">Optional short description or slides link.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2 class="section-title">Contact</h2>
+      <div class="card">
+        <p>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
+        <p>Office / affiliation details if applicable.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap small">
+      © <span id="year"></span> Your Name. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
