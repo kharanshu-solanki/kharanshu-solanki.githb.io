@@ -5,30 +5,87 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Your Name | Personal Website</title>
   <meta name="description" content="Personal academic website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:wght@600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0b1020;
-      --panel: #121933;
-      --text: #e8ecf3;
-      --muted: #aeb7c8;
-      --line: #27304d;
-      --accent: #c7d2fe;
-      --accent-strong: #93c5fd;
-      --max: 980px;
+      --bg: #f6f8fb;
+      --bg-soft: #eef2f8;
+      --panel: rgba(255,255,255,0.72);
+      --panel-strong: rgba(255,255,255,0.9);
+      --text: #101827;
+      --muted: #52607a;
+      --line: rgba(16,24,39,0.1);
+      --accent: #3258d6;
+      --accent-soft: rgba(50,88,214,0.12);
+      --shadow: 0 18px 48px rgba(15, 23, 42, 0.09);
+      --hero-glow: radial-gradient(circle at top right, rgba(80,120,255,0.18), transparent 38%), radial-gradient(circle at top left, rgba(110,231,183,0.12), transparent 28%);
+      --bg-image-opacity: 0.08;
+      --max: 1100px;
+    }
+
+    body.dark {
+      --bg: #07111f;
+      --bg-soft: #0b1528;
+      --panel: rgba(10, 18, 34, 0.68);
+      --panel-strong: rgba(13, 22, 40, 0.82);
+      --text: #edf2fb;
+      --muted: #a9b5c9;
+      --line: rgba(255,255,255,0.08);
+      --accent: #8fb1ff;
+      --accent-soft: rgba(143,177,255,0.14);
+      --shadow: 0 22px 56px rgba(0, 0, 0, 0.28);
+      --hero-glow: radial-gradient(circle at top right, rgba(86,123,255,0.18), transparent 38%), radial-gradient(circle at top left, rgba(56,189,248,0.10), transparent 28%);
+      --bg-image-opacity: 0.14;
     }
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: linear-gradient(180deg, #0b1020 0%, #0d1327 100%);
+      background: var(--bg);
       color: var(--text);
-      line-height: 1.65;
+      line-height: 1.68;
+      transition: background-color 0.25s ease, color 0.25s ease;
+      overflow-x: hidden;
+    }
+
+    .background-image,
+    .background-overlay,
+    .background-glow {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .background-image {
+      z-index: -3;
+      background:
+        url('https://images.unsplash.com/photo-1517816743773-6e0fd518b4a6?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      filter: blur(14px);
+      transform: scale(1.08);
+      opacity: var(--bg-image-opacity);
+    }
+
+    .background-overlay {
+      z-index: -2;
+      background: linear-gradient(180deg, rgba(255,255,255,0.3), rgba(255,255,255,0.55));
+    }
+
+    body.dark .background-overlay {
+      background: linear-gradient(180deg, rgba(2,6,23,0.38), rgba(2,6,23,0.56));
+    }
+
+    .background-glow {
+      z-index: -1;
+      background: var(--hero-glow);
     }
 
     a {
-      color: var(--accent-strong);
+      color: var(--accent);
       text-decoration: none;
     }
 
@@ -42,99 +99,173 @@
     header {
       position: sticky;
       top: 0;
-      z-index: 20;
-      backdrop-filter: blur(12px);
-      background: rgba(11, 16, 32, 0.78);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+      z-index: 40;
+      background: color-mix(in srgb, var(--bg) 72%, transparent);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line);
     }
 
     nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0.9rem 0;
+      padding: 0.95rem 0;
       gap: 1rem;
     }
 
     .brand {
-      font-weight: 700;
+      font-weight: 800;
+      font-size: 1rem;
       letter-spacing: 0.02em;
       color: var(--text);
     }
 
     .nav-links {
       display: flex;
-      gap: 1rem;
+      align-items: center;
+      gap: 0.85rem;
       flex-wrap: wrap;
     }
 
-    .hero {
-      padding: 5rem 0 3rem;
-      display: grid;
-      grid-template-columns: 1.4fr 0.8fr;
-      gap: 2rem;
-      align-items: center;
+    .nav-links a {
+      color: var(--muted);
+      font-size: 0.96rem;
+      font-weight: 500;
     }
 
-    .hero-card, .card {
-      background: rgba(18, 25, 51, 0.72);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 22px;
-      padding: 1.4rem;
-      box-shadow: 0 18px 50px rgba(0,0,0,0.24);
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 0.6rem 0.9rem;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      padding: 4.8rem 0 2.4rem;
+      display: grid;
+      grid-template-columns: 1.3fr 0.9fr;
+      gap: 1.25rem;
+      align-items: stretch;
+    }
+
+    .hero-card,
+    .card,
+    .publication,
+    .project,
+    .talk {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .hero-card,
+    .card {
+      padding: 1.5rem;
+    }
+
+    .hero-card {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(180deg, var(--panel-strong), var(--panel));
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      inset: auto -20% -30% auto;
+      width: 320px;
+      height: 320px;
+      border-radius: 999px;
+      background: radial-gradient(circle, var(--accent-soft), transparent 65%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 0.4rem 0.75rem;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
     }
 
     h1, h2, h3 {
-      line-height: 1.15;
+      line-height: 1.12;
       margin-top: 0;
-    }
-
-    h1 {
-      font-size: clamp(2.3rem, 6vw, 4.3rem);
-      margin-bottom: 0.75rem;
       letter-spacing: -0.03em;
     }
 
-    h2 {
-      font-size: clamp(1.5rem, 2vw, 2rem);
-      margin-bottom: 0.9rem;
-    }
-
-    .subtitle {
-      color: var(--accent);
-      font-size: 1.05rem;
+    h1 {
+      font-family: "Source Serif 4", Georgia, serif;
+      font-size: clamp(3rem, 6vw, 5rem);
       margin-bottom: 0.8rem;
     }
 
+    h2 {
+      font-family: "Source Serif 4", Georgia, serif;
+      font-size: clamp(1.65rem, 2.5vw, 2.15rem);
+      margin-bottom: 0.9rem;
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.55rem;
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: 1.08rem;
+      max-width: 65ch;
+    }
+
+    .small { font-size: 0.96rem; }
     .muted { color: var(--muted); }
+    .section-title { margin-bottom: 1rem; }
 
     .button-row {
       display: flex;
       gap: 0.8rem;
       flex-wrap: wrap;
-      margin-top: 1.3rem;
+      margin-top: 1.45rem;
     }
 
     .btn {
-      display: inline-block;
-      padding: 0.78rem 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.85rem 1.05rem;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.1);
-      background: #182249;
-      color: var(--text);
-      font-weight: 600;
+      border: 1px solid var(--line);
+      background: var(--text);
+      color: var(--bg);
+      font-weight: 700;
+      transition: transform 0.18s ease, opacity 0.18s ease;
     }
 
     .btn.secondary {
       background: transparent;
+      color: var(--text);
+    }
+
+    .btn:hover,
+    .theme-toggle:hover,
+    .icon-link:hover {
+      transform: translateY(-1px);
+      text-decoration: none;
     }
 
     section {
-      padding: 1rem 0 1.8rem;
-    }
-
-    .section-title {
-      margin-bottom: 1rem;
+      padding: 1rem 0 1.6rem;
     }
 
     .grid {
@@ -142,104 +273,243 @@
       gap: 1rem;
     }
 
-    .two {
+    .two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+    .stats {
+      display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.85rem;
+      margin-top: 1rem;
     }
 
-    .publication, .project, .talk {
-      padding: 1rem 1.1rem;
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,0.07);
-      background: rgba(255,255,255,0.02);
+    .stat {
+      padding: 1rem;
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .publication,
+    .project,
+    .talk {
+      padding: 1.05rem 1.15rem;
+      transition: transform 0.18s ease, border-color 0.18s ease;
+    }
+
+    .publication:hover,
+    .project:hover,
+    .talk:hover {
+      transform: translateY(-2px);
+      border-color: color-mix(in srgb, var(--accent) 24%, var(--line));
     }
 
     .meta {
       color: var(--muted);
-      font-size: 0.95rem;
+      font-size: 0.93rem;
       margin-bottom: 0.35rem;
     }
 
-    ul.clean {
-      list-style: none;
-      padding: 0;
-      margin: 0;
+    .contact-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 1rem;
     }
 
-    ul.clean li + li {
-      margin-top: 0.9rem;
+    .icon-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.72rem 0.95rem;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--panel-strong);
+      color: var(--text);
+      font-weight: 600;
+      box-shadow: var(--shadow);
+      transition: transform 0.18s ease;
+    }
+
+    .icon {
+      width: 18px;
+      height: 18px;
+      flex: 0 0 auto;
+    }
+
+    .hero-side {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .profile-visual {
+      min-height: 240px;
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(84,114,255,0.24), rgba(255,255,255,0.03)),
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.22), transparent 25%),
+        radial-gradient(circle at 80% 65%, rgba(110,231,183,0.18), transparent 26%),
+        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+    }
+
+    body.dark .profile-visual {
+      background:
+        linear-gradient(135deg, rgba(84,114,255,0.22), rgba(255,255,255,0.01)),
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.14), transparent 25%),
+        radial-gradient(circle at 80% 65%, rgba(56,189,248,0.18), transparent 26%),
+        linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    }
+
+    .profile-visual::before,
+    .profile-visual::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.16);
+    }
+
+    .profile-visual::before {
+      width: 260px;
+      height: 260px;
+      top: -70px;
+      right: -40px;
+    }
+
+    .profile-visual::after {
+      width: 180px;
+      height: 180px;
+      bottom: -30px;
+      left: -30px;
     }
 
     footer {
       padding: 2rem 0 4rem;
       color: var(--muted);
-      border-top: 1px solid rgba(255,255,255,0.06);
+      border-top: 1px solid var(--line);
       margin-top: 2rem;
     }
 
-    .small { font-size: 0.95rem; }
+    .reveal {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
 
-    @media (max-width: 860px) {
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 900px) {
       .hero, .two { grid-template-columns: 1fr; }
       nav { align-items: flex-start; flex-direction: column; }
+      .nav-links { gap: 0.7rem; }
+    }
+
+    @media (max-width: 640px) {
+      .button-row, .contact-bar { flex-direction: column; align-items: stretch; }
+      .stats { grid-template-columns: 1fr; }
+      .wrap { width: min(var(--max), calc(100% - 1.1rem)); }
+      .hero-card, .card { padding: 1.2rem; }
     }
   </style>
 </head>
-<body>
+<body class="dark">
+  <div class="background-image"></div>
+  <div class="background-overlay"></div>
+  <div class="background-glow"></div>
+
   <header>
     <div class="wrap">
       <nav>
         <a class="brand" href="#top">Your Name</a>
-        <div class="nav-links small">
+        <div class="nav-links">
           <a href="#about">About</a>
           <a href="#research">Research</a>
           <a href="#publications">Publications</a>
           <a href="#projects">Projects</a>
           <a href="#talks">Talks</a>
           <a href="#contact">Contact</a>
+          <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+            <span id="theme-label">Light mode</span>
+          </button>
         </div>
       </nav>
     </div>
   </header>
 
   <main id="top" class="wrap">
-    <section class="hero">
+    <section class="hero reveal">
       <div class="hero-card">
-        <div class="subtitle">Mathematical Physics · General Relativity · Lorentzian Geometry</div>
+        <div class="eyebrow">Mathematical Physics · General Relativity · Lorentzian Geometry</div>
         <h1>Your Name</h1>
-        <p class="muted">
-          Master's student in mathematical physics. This site can serve as your official academic homepage: bio, research interests, publications, CV, talks, and contact details in one canonical place.
+        <p class="lead">
+          Master's student in mathematical physics working on spacetime inextendibility, black hole interiors, singularity theory, and geometric problems in general relativity.
         </p>
         <div class="button-row">
           <a class="btn" href="#publications">View Publications</a>
           <a class="btn secondary" href="cv.pdf" target="_blank" rel="noopener noreferrer">Download CV</a>
         </div>
+        <div class="contact-bar">
+          <a class="icon-link" href="mailto:your.email@example.com">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg>
+            Email
+          </a>
+          <a class="icon-link" href="#">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.22c0 4.5 2.87 8.31 6.84 9.66.5.1.68-.22.68-.49 0-.24-.01-1.05-.01-1.9-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.63.07-.63 1 .07 1.53 1.05 1.53 1.05.9 1.57 2.36 1.11 2.94.85.09-.67.35-1.11.63-1.36-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.04 1.03-2.76-.1-.26-.45-1.32.1-2.76 0 0 .84-.28 2.75 1.05A9.32 9.32 0 0 1 12 6.86c.85 0 1.71.12 2.51.35 1.91-1.33 2.75-1.05 2.75-1.05.55 1.44.2 2.5.1 2.76.64.72 1.03 1.64 1.03 2.76 0 3.93-2.34 4.79-4.57 5.05.36.32.68.95.68 1.92 0 1.38-.01 2.5-.01 2.84 0 .27.18.59.69.49A10.24 10.24 0 0 0 22 12.22C22 6.58 17.52 2 12 2Z"/></svg>
+            GitHub
+          </a>
+          <a class="icon-link" href="#">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 13.5c.7 1.2 2 2 3.5 2 2.2 0 4-1.8 4-4 0-1.5-.8-2.8-2-3.5"/><path d="M8 10h.01"/><path d="M16 14h.01"/></svg>
+            Scholar
+          </a>
+          <a class="icon-link" href="#">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3 4 7l8 4 8-4-8-4Z"/><path d="M4 12l8 4 8-4"/><path d="M4 17l8 4 8-4"/></svg>
+            arXiv
+          </a>
+        </div>
       </div>
 
-      <div class="card">
-        <h2>Current Position</h2>
-        <p class="muted small">
-          Master's Student, University of Vienna<br>
-          Research interests: mathematical general relativity, spacetime inextendibility, Lorentzian length spaces, singularity theorems.
-        </p>
-        <hr style="border:0;border-top:1px solid rgba(255,255,255,0.08);margin:1rem 0;">
-        <p class="small"><strong>Email:</strong> your.email@example.com</p>
-        <p class="small"><strong>ORCID:</strong> add link</p>
-        <p class="small"><strong>Google Scholar:</strong> add link</p>
-        <p class="small"><strong>arXiv:</strong> add link</p>
-        <p class="small"><strong>GitHub:</strong> add link</p>
+      <div class="hero-side">
+        <div class="card">
+          <h2>Current Position</h2>
+          <p class="muted small">
+            Master's Student, University of Vienna<br>
+            Research interests: mathematical general relativity, spacetime inextendibility, Lorentzian length spaces, singularity theorems.
+          </p>
+          <div class="stats">
+            <div class="stat">
+              <div class="meta">Focus</div>
+              <strong>C⁰-inextendibility</strong>
+            </div>
+            <div class="stat">
+              <div class="meta">Area</div>
+              <strong>Black hole interiors</strong>
+            </div>
+            <div class="stat">
+              <div class="meta">Methods</div>
+              <strong>Causal geometry</strong>
+            </div>
+            <div class="stat">
+              <div class="meta">Tools</div>
+              <strong>Analysis & geometry</strong>
+            </div>
+          </div>
+        </div>
+        <div class="card profile-visual"></div>
       </div>
     </section>
 
-    <section id="about">
+    <section id="about" class="reveal">
       <h2 class="section-title">About</h2>
       <div class="card">
         <p>
-          Replace this paragraph with a concise academic biography. State who you are, what you work on, where you are based, and what mathematical questions drive your research.
+          Replace this paragraph with a concise academic biography. State your current degree program, institutional affiliation, broad research direction, and the central mathematical questions driving your work.
         </p>
       </div>
     </section>
 
-    <section id="research">
+    <section id="research" class="reveal">
       <h2 class="section-title">Research</h2>
       <div class="grid two">
         <div class="card">
@@ -253,7 +523,7 @@
       </div>
     </section>
 
-    <section id="publications">
+    <section id="publications" class="reveal">
       <h2 class="section-title">Publications and Preprints</h2>
       <div class="grid">
         <article class="publication">
@@ -271,7 +541,7 @@
       </div>
     </section>
 
-    <section id="projects">
+    <section id="projects" class="reveal">
       <h2 class="section-title">Projects</h2>
       <div class="grid two">
         <div class="project">
@@ -285,7 +555,7 @@
       </div>
     </section>
 
-    <section id="talks">
+    <section id="talks" class="reveal">
       <h2 class="section-title">Talks</h2>
       <div class="grid">
         <div class="talk">
@@ -296,11 +566,17 @@
       </div>
     </section>
 
-    <section id="contact">
+    <section id="contact" class="reveal">
       <h2 class="section-title">Contact</h2>
       <div class="card">
         <p>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
         <p>Office / affiliation details if applicable.</p>
+        <div class="contact-bar">
+          <a class="icon-link" href="#">ORCID</a>
+          <a class="icon-link" href="#">Google Scholar</a>
+          <a class="icon-link" href="#">arXiv</a>
+          <a class="icon-link" href="#">GitHub</a>
+        </div>
       </div>
     </section>
   </main>
@@ -313,6 +589,37 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeLabel = document.getElementById('theme-label');
+    const body = document.body;
+
+    function applyTheme(theme) {
+      if (theme === 'light') {
+        body.classList.remove('dark');
+        themeLabel.textContent = 'Dark mode';
+      } else {
+        body.classList.add('dark');
+        themeLabel.textContent = 'Light mode';
+      }
+      localStorage.setItem('theme', theme);
+    }
+
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    applyTheme(savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+      const nextTheme = body.classList.contains('dark') ? 'light' : 'dark';
+      applyTheme(nextTheme);
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
   </script>
 </body>
 </html>
