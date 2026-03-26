@@ -5,9 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kharanshu Solanki</title>
   <meta name="description" content="Personal academic website" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Computer Modern web fonts -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/computer-modern@0.1.3/index.css">
+
+  <!-- KaTeX -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.43/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.43/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.43/dist/contrib/auto-render.min.js"></script>
+
   <style>
     :root {
       --bg: #f6f8fb;
@@ -20,9 +26,11 @@
       --accent: #3258d6;
       --accent-soft: rgba(50,88,214,0.12);
       --shadow: 0 18px 48px rgba(15, 23, 42, 0.09);
-      --hero-glow: radial-gradient(circle at top right, rgba(80,120,255,0.18), transparent 38%), radial-gradient(circle at top left, rgba(110,231,183,0.12), transparent 28%);
+      --hero-glow:
+        radial-gradient(circle at top right, rgba(80,120,255,0.18), transparent 38%),
+        radial-gradient(circle at top left, rgba(110,231,183,0.12), transparent 28%);
       --bg-image-opacity: 0.08;
-      --max: 1100px;
+      --max: 1120px;
     }
 
     body.dark {
@@ -36,7 +44,9 @@
       --accent: #8fb1ff;
       --accent-soft: rgba(143,177,255,0.14);
       --shadow: 0 22px 56px rgba(0, 0, 0, 0.28);
-      --hero-glow: radial-gradient(circle at top right, rgba(86,123,255,0.18), transparent 38%), radial-gradient(circle at top left, rgba(56,189,248,0.10), transparent 28%);
+      --hero-glow:
+        radial-gradient(circle at top right, rgba(86,123,255,0.18), transparent 38%),
+        radial-gradient(circle at top left, rgba(56,189,248,0.10), transparent 28%);
       --bg-image-opacity: 0.14;
     }
 
@@ -45,12 +55,24 @@
 
     body {
       margin: 0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: "CMU Serif", Georgia, serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.68;
+      line-height: 1.66;
       transition: background-color 0.25s ease, color 0.25s ease;
       overflow-x: hidden;
+    }
+
+    .brand,
+    .nav-links a,
+    .theme-toggle,
+    .btn,
+    .icon-link,
+    .eyebrow,
+    .meta,
+    .small,
+    .stat .meta {
+      font-family: "CMU Sans Serif", Arial, sans-serif;
     }
 
     .background-image,
@@ -64,7 +86,8 @@
     .background-image {
       z-index: -3;
       background:
-        url('https://images.unsplash.com/photo-1517816743773-6e0fd518b4a6?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+        url("https://images.unsplash.com/photo-1517816743773-6e0fd518b4a6?auto=format&fit=crop&w=1600&q=80")
+        center/cover no-repeat;
       filter: blur(14px);
       transform: scale(1.08);
       opacity: var(--bg-image-opacity);
@@ -91,6 +114,11 @@
 
     a:hover { text-decoration: underline; }
 
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
     .wrap {
       width: min(var(--max), calc(100% - 2rem));
       margin: 0 auto;
@@ -109,22 +137,24 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0.95rem 0;
       gap: 1rem;
+      padding: 0.95rem 0;
     }
 
     .brand {
-      font-weight: 800;
+      font-weight: 700;
       font-size: 1rem;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.01em;
       color: var(--text);
+      white-space: nowrap;
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 0.85rem;
+      justify-content: flex-end;
       flex-wrap: wrap;
+      gap: 0.85rem;
     }
 
     .nav-links a {
@@ -144,13 +174,14 @@
       padding: 0.6rem 0.9rem;
       cursor: pointer;
       box-shadow: var(--shadow);
+      font-size: 0.96rem;
     }
 
     .hero {
-      padding: 4.8rem 0 2.4rem;
+      padding: 4rem 0 2.25rem;
       display: grid;
-      grid-template-columns: 1.3fr 0.9fr;
-      gap: 1.25rem;
+      grid-template-columns: minmax(0, 1.22fr) minmax(320px, 0.88fr);
+      gap: 1.15rem;
       align-items: stretch;
     }
 
@@ -167,7 +198,7 @@
 
     .hero-card,
     .card {
-      padding: 1.5rem;
+      padding: 1.45rem;
     }
 
     .hero-card {
@@ -179,7 +210,7 @@
     .hero-card::after {
       content: "";
       position: absolute;
-      inset: auto -20% -30% auto;
+      inset: auto -18% -34% auto;
       width: 320px;
       height: 320px;
       border-radius: 999px;
@@ -189,31 +220,32 @@
 
     .eyebrow {
       display: inline-block;
-      padding: 0.4rem 0.75rem;
+      padding: 0.42rem 0.78rem;
       border-radius: 999px;
       background: var(--accent-soft);
       color: var(--accent);
-      font-size: 0.9rem;
+      font-size: 0.84rem;
       font-weight: 700;
       margin-bottom: 1rem;
       position: relative;
       z-index: 1;
+      letter-spacing: 0.01em;
     }
 
     .hero-intro {
       display: flex;
       align-items: center;
-      gap: 1.2rem;
-      margin-bottom: 0.9rem;
+      gap: 1.15rem;
+      margin-bottom: 0.95rem;
       position: relative;
       z-index: 1;
     }
 
     .hero-portrait {
-      width: 145px;
-      height: 190px;
-      flex: 0 0 145px;
-      border-radius: 20px;
+      width: 148px;
+      height: 198px;
+      flex: 0 0 148px;
+      border-radius: 22px;
       overflow: hidden;
       border: 1px solid var(--line);
       box-shadow: var(--shadow);
@@ -225,6 +257,7 @@
       height: 100%;
       display: block;
       object-fit: cover;
+      object-position: center top;
     }
 
     .hero-name-block {
@@ -233,34 +266,40 @@
     }
 
     h1, h2, h3 {
-      line-height: 1.12;
+      line-height: 1.1;
       margin-top: 0;
-      letter-spacing: -0.03em;
+      letter-spacing: 0;
     }
 
     h1 {
-      font-family: "Source Serif 4", Georgia, serif;
-      font-size: clamp(2.4rem, 4.6vw, 3.7rem);
+      font-family: "CMU Serif", Georgia, serif;
+      font-size: clamp(2.45rem, 4.7vw, 3.95rem);
       margin-bottom: 0;
+      word-break: break-word;
+      font-weight: 700;
     }
 
     h2 {
-      font-family: "Source Serif 4", Georgia, serif;
-      font-size: clamp(1.65rem, 2.5vw, 2.15rem);
-      margin-bottom: 0.9rem;
+      font-family: "CMU Serif", Georgia, serif;
+      font-size: clamp(1.6rem, 2.45vw, 2.08rem);
+      margin-bottom: 0.85rem;
+      font-weight: 700;
     }
 
     h3 {
+      font-family: "CMU Serif", Georgia, serif;
       font-size: 1.1rem;
       margin-bottom: 0.55rem;
+      font-weight: 700;
     }
 
     .lead {
       color: var(--muted);
-      font-size: 1.08rem;
-      max-width: 65ch;
+      font-size: 1.06rem;
+      max-width: 62ch;
       position: relative;
       z-index: 1;
+      margin: 0;
     }
 
     .small { font-size: 0.96rem; }
@@ -271,7 +310,7 @@
       display: flex;
       gap: 0.8rem;
       flex-wrap: wrap;
-      margin-top: 1.45rem;
+      margin-top: 1.35rem;
       position: relative;
       z-index: 1;
     }
@@ -279,6 +318,7 @@
     .btn {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 0.55rem;
       padding: 0.85rem 1.05rem;
       border-radius: 999px;
@@ -287,6 +327,8 @@
       color: var(--bg);
       font-weight: 700;
       transition: transform 0.18s ease, opacity 0.18s ease;
+      white-space: nowrap;
+      font-size: 0.95rem;
     }
 
     .btn.secondary {
@@ -310,7 +352,9 @@
       gap: 1rem;
     }
 
-    .two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .two {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 
     .stats {
       display: grid;
@@ -340,7 +384,7 @@
 
     .meta {
       color: var(--muted);
-      font-size: 0.93rem;
+      font-size: 0.91rem;
       margin-bottom: 0.35rem;
     }
 
@@ -356,6 +400,7 @@
     .icon-link {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 0.55rem;
       padding: 0.72rem 0.95rem;
       border-radius: 999px;
@@ -365,6 +410,8 @@
       font-weight: 600;
       box-shadow: var(--shadow);
       transition: transform 0.18s ease;
+      white-space: nowrap;
+      font-size: 0.94rem;
     }
 
     .icon {
@@ -376,22 +423,23 @@
     .hero-side {
       display: grid;
       gap: 1rem;
+      align-content: start;
     }
 
     .profile-visual {
-      min-height: 240px;
-      position: relative;
-      overflow: hidden;
+      min-height: 320px;
       padding: 0;
+      overflow: hidden;
       background: transparent;
     }
 
     .profile-image {
       width: 100%;
       height: 100%;
-      min-height: 240px;
+      min-height: 320px;
       display: block;
       object-fit: cover;
+      object-position: center;
       border-radius: inherit;
     }
 
@@ -413,43 +461,148 @@
       transform: translateY(0);
     }
 
-    @media (max-width: 900px) {
-      .hero, .two { grid-template-columns: 1fr; }
-      nav { align-items: flex-start; flex-direction: column; }
-      .nav-links { gap: 0.7rem; }
-    }
-
-    @media (max-width: 640px) {
-      .button-row, .contact-bar { flex-direction: column; align-items: stretch; }
-      .stats { grid-template-columns: 1fr; }
-      .wrap { width: min(var(--max), calc(100% - 1.1rem)); }
-      .hero-card, .card { padding: 1.2rem; }
-
-      .hero-intro {
-        align-items: flex-start;
-        gap: 1rem;
+    @media (max-width: 1080px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr) minmax(280px, 0.84fr);
       }
 
       .hero-portrait {
-        width: 110px;
-        height: 145px;
-        flex-basis: 110px;
+        width: 132px;
+        height: 178px;
+        flex-basis: 132px;
       }
 
-      h1 {
-        font-size: clamp(2rem, 8vw, 2.8rem);
+      .profile-visual,
+      .profile-image {
+        min-height: 280px;
       }
     }
 
-    @media (max-width: 480px) {
-      .hero-intro {
+    @media (max-width: 900px) {
+      .hero,
+      .two {
+        grid-template-columns: 1fr;
+      }
+
+      nav {
+        align-items: flex-start;
         flex-direction: column;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+      }
+
+      .hero {
+        padding-top: 3rem;
       }
 
       .hero-portrait {
         width: 120px;
-        height: 160px;
-        flex-basis: 120px;
+        height: 162px;
+        flex: 0 0 120px;
+      }
+
+      h1 {
+        font-size: clamp(2.15rem, 7vw, 3rem);
+      }
+
+      .profile-visual,
+      .profile-image {
+        min-height: 240px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .wrap {
+        width: min(var(--max), calc(100% - 1rem));
+      }
+
+      .hero-card,
+      .card {
+        padding: 1.15rem;
+      }
+
+      .hero {
+        gap: 0.95rem;
+        padding-top: 2.35rem;
+      }
+
+      .hero-intro {
+        gap: 0.8rem;
+        align-items: center;
+      }
+
+      .hero-portrait {
+        width: 84px;
+        height: 116px;
+        flex: 0 0 84px;
+        border-radius: 16px;
+      }
+
+      h1 {
+        font-size: 1.9rem;
+        line-height: 1.04;
+      }
+
+      .lead {
+        font-size: 0.98rem;
+      }
+
+      .button-row,
+      .contact-bar {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
+      .btn,
+      .icon-link {
+        width: auto;
+        max-width: 100%;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .profile-visual,
+      .profile-image {
+        min-height: 190px;
+      }
+
+      .eyebrow {
+        font-size: 0.77rem;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .hero-intro {
+        gap: 0.7rem;
+      }
+
+      .hero-portrait {
+        width: 74px;
+        height: 102px;
+        flex: 0 0 74px;
+      }
+
+      h1 {
+        font-size: 1.68rem;
+      }
+
+      .nav-links {
+        gap: 0.65rem;
+      }
+
+      .nav-links a,
+      .theme-toggle {
+        font-size: 0.9rem;
+      }
+
+      .profile-visual,
+      .profile-image {
+        min-height: 170px;
       }
     }
   </style>
@@ -502,7 +655,10 @@
 
         <div class="contact-bar">
           <a class="icon-link" href="mailto:Kharanshu.solanki1889@gmail.com">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg>
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 6h16v12H4z"></path>
+              <path d="m4 7 8 6 8-6"></path>
+            </svg>
             Email
           </a>
           <a class="icon-link" href="https://orcid.org/0000-0002-6909-4370" target="_blank" rel="noopener noreferrer">
@@ -532,10 +688,10 @@
             Scientific project staff in the FWF START project “<a href="https://www.fwf.ac.at/en/research-radar/10.55776/STA32" target="_blank" rel="noopener noreferrer">Lorentzian length spaces</a>”<br>
             Fakultät für Mathematik, Universität Wien, Oskar-Morgenstern-Platz, 1090 Wien.
           </p>
-          <div class="stats" style="grid-template-columns: repeat(2, minmax(0, 1fr));">
+          <div class="stats">
             <div class="stat">
               <div class="meta">Focus</div>
-              <strong>C⁰-inextendibility, gravitational collapse</strong>
+              <strong>\( \mathcal{C}^0 \)-inextendibility, gravitational collapse</strong>
             </div>
             <div class="stat">
               <div class="meta">Area</div>
@@ -565,20 +721,26 @@
         <div class="card">
           <h3>Inextendibility of Spacetimes</h3>
           <p class="muted">
-            I work on questions of low-regularity inextendibility in general relativity, especially for physically relevant collapse spacetimes. A central theme is the interaction between causal structure, singular behavior, and obstructions to continuous or low-regularity extensions. Currently I am working on proving the C<sup>0</sup>-inextendibility of Vaidya spacetimes as part of my masters thesis under the supervision of <a href="https://clemenssaemann.wordpress.com" target="_blank" rel="noopener noreferrer">Clemens Sämann</a>.
+            I work on questions of low-regularity inextendibility in general relativity, especially for physically relevant collapse spacetimes. A central theme is the interaction between causal structure, singular behavior, and obstructions to continuous or low-regularity extensions. Currently I am working on proving the \( \mathcal{C}^0 \)-inextendibility of Vaidya spacetimes as part of my masters thesis under the supervision of <a href="https://clemenssaemann.wordpress.com" target="_blank" rel="noopener noreferrer">Clemens Sämann</a>.
           </p>
         </div>
         <div class="card">
           <h3>Gravitational Collapse and Naked Singularities</h3>
-          <p class="muted">I am interested in geometric and analytic questions arising from gravitational collapse, including black hole formation, visibility of singularities, and conditions under which collapse leads to globally or locally naked singular behavior.</p>
+          <p class="muted">
+            I am interested in geometric and analytic questions arising from gravitational collapse, including black hole formation, visibility of singularities, and conditions under which collapse leads to globally or locally naked singular behavior.
+          </p>
         </div>
         <div class="card">
           <h3>Lorentzian Length Spaces</h3>
-          <p class="muted">I am interested in synthetic and low-regularity approaches to Lorentzian geometry, especially the extent to which classical Lorentzian causality theory can be formulated beyond the smooth manifold setting.</p>
+          <p class="muted">
+            I am interested in synthetic and low-regularity approaches to Lorentzian geometry, especially the extent to which classical causality and singularity theory can be formulated beyond the smooth setting.
+          </p>
         </div>
         <div class="card">
           <h3>Geometric and Analytical Methods in Relativity</h3>
-          <p class="muted">More broadly, I am drawn to problems in which differential geometry, causality theory, and analysis jointly clarify physically interpretable phenomena in general relativity.</p>
+          <p class="muted">
+            More broadly, I am drawn to problems in which differential geometry, causal theory, and analysis jointly clarify physically interpretable phenomena in spacetime geometry.
+          </p>
         </div>
       </div>
     </section>
@@ -588,20 +750,33 @@
       <div class="grid">
         <article class="publication">
           <div class="meta">2026 · Manuscript in preparation</div>
-          <strong>C⁰-inextendibility of Vaidya spacetimes</strong>
-          <div class="muted"><a href="https://clemenssaemann.wordpress.com" target="_blank" rel="noopener noreferrer">Clemens Sämann</a>, <a href="https://sites.google.com/view/karim-mosani" target="_blank" rel="noopener noreferrer">Karim Mosani</a>, and <span style="color: var(--accent); font-weight: 700;">Kharanshu N. Solanki</span></div>
+          <strong>\( \mathcal{C}^0 \)-inextendibility of Vaidya spacetimes</strong>
+          <div class="muted">
+            <a href="https://clemenssaemann.wordpress.com" target="_blank" rel="noopener noreferrer">Clemens Sämann</a>,
+            <a href="https://sites.google.com/view/karim-mosani" target="_blank" rel="noopener noreferrer">Karim Mosani</a>,
+            and <span style="color: var(--accent); font-weight: 700;">Kharanshu N. Solanki</span>
+          </div>
           <p class="small">Work in preparation on low-regularity inextendibility questions for Vaidya spacetimes.</p>
         </article>
+
         <article class="publication">
           <div class="meta">2026 · Preprint</div>
           <strong>Obstructions to global visibility of singularities in asymptotically flat spacetimes</strong>
-          <div class="muted">Kanabar Jay, <span style="color: var(--accent); font-weight: 700;">Kharanshu N. Solanki</span>, and <a href="https://ahduni.edu.in/faculty/pankaj-joshi/" target="_blank" rel="noopener noreferrer">Pankaj S. Joshi</a></div>
+          <div class="muted">
+            Kanabar Jay, <span style="color: var(--accent); font-weight: 700;">Kharanshu N. Solanki</span>, and
+            <a href="https://ahduni.edu.in/faculty/pankaj-joshi/" target="_blank" rel="noopener noreferrer">Pankaj S. Joshi</a>
+          </div>
           <p class="small"><a href="https://arxiv.org/abs/2601.04152" target="_blank" rel="noopener noreferrer">arXiv:2601.04152</a></p>
         </article>
+
         <article class="publication">
           <div class="meta">2024 · Classical and Quantum Gravity</div>
-          <strong>Tipler naked singularities in N dimensions</strong>
-          <div class="muted"><span style="color: var(--accent); font-weight: 700;">Kharanshu N. Solanki</span>, Omkar Deshande, <a href="https://sites.google.com/view/karim-mosani" target="_blank" rel="noopener noreferrer">Karim Mosani</a>, and <a href="https://ahduni.edu.in/faculty/pankaj-joshi/" target="_blank" rel="noopener noreferrer">Pankaj S. Joshi</a></div>
+          <strong>Tipler naked singularities in \( N \) dimensions</strong>
+          <div class="muted">
+            <span style="color: var(--accent); font-weight: 700;">Kharanshu N. Solanki</span>, Omkar Deshande,
+            <a href="https://sites.google.com/view/karim-mosani" target="_blank" rel="noopener noreferrer">Karim Mosani</a>, and
+            <a href="https://ahduni.edu.in/faculty/pankaj-joshi/" target="_blank" rel="noopener noreferrer">Pankaj S. Joshi</a>
+          </div>
           <p class="small"><a href="https://arxiv.org/abs/2404.02940" target="_blank" rel="noopener noreferrer">arXiv:2404.02940</a></p>
         </article>
       </div>
@@ -610,6 +785,10 @@
     <section id="talks" class="reveal">
       <h2 class="section-title">Talks and Academic Activities</h2>
       <div class="grid">
+        <div class="talk">
+          <div class="meta">November 2024 · <a href="https://ef-geometry-seminar.univie.ac.at" target="_blank" rel="noopener noreferrer">LOGOS Seminar</a>, Universität Wien</div>
+          <strong>Strong curvature naked singularities from gravitational collapse</strong>
+        </div>
         <div class="talk">
           <div class="meta">July 2025 · Universität Wien</div>
           <strong><a href="https://ef-geometry.univie.ac.at/2nd-workshop-a-new-geometry-for-einsteins-theory-of-relativity-and-beyond/" target="_blank" rel="noopener noreferrer">2nd Workshop: A new geometry for Einstein’s theory of relativity and beyond</a></strong>
@@ -621,10 +800,6 @@
         <div class="talk">
           <div class="meta">February 2025 · Universität Wien</div>
           <strong><a href="https://ef-geometry.univie.ac.at/kick-off-workshop-a-new-geometry-for-einsteins-theory-of-relativity-and-beyond/" target="_blank" rel="noopener noreferrer">Kick-off Workshop: A new geometry for Einstein’s theory of relativity and beyond</a></strong>
-        </div>
-        <div class="talk">
-          <div class="meta">November 2024 · <a href="https://ef-geometry-seminar.univie.ac.at" target="_blank" rel="noopener noreferrer">LOGOS Seminar</a>, Universität Wien</div>
-          <strong>Strong curvature naked singularities from gravitational collapse</strong>
         </div>
       </div>
     </section>
@@ -653,38 +828,50 @@
   </footer>
 
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-    const themeToggle = document.getElementById('theme-toggle');
-    const themeLabel = document.getElementById('theme-label');
+    const themeToggle = document.getElementById("theme-toggle");
+    const themeLabel = document.getElementById("theme-label");
     const body = document.body;
 
     function applyTheme(theme) {
-      if (theme === 'light') {
-        body.classList.remove('dark');
-        themeLabel.textContent = 'Dark mode';
+      if (theme === "light") {
+        body.classList.remove("dark");
+        themeLabel.textContent = "Dark mode";
       } else {
-        body.classList.add('dark');
-        themeLabel.textContent = 'Light mode';
+        body.classList.add("dark");
+        themeLabel.textContent = "Light mode";
       }
-      localStorage.setItem('theme', theme);
+      localStorage.setItem("theme", theme);
     }
 
-    const savedTheme = localStorage.getItem('theme') || 'light';
+    const savedTheme = localStorage.getItem("theme") || "dark";
     applyTheme(savedTheme);
 
-    themeToggle.addEventListener('click', () => {
-      const nextTheme = body.classList.contains('dark') ? 'light' : 'dark';
+    themeToggle.addEventListener("click", () => {
+      const nextTheme = body.classList.contains("dark") ? "light" : "dark";
       applyTheme(nextTheme);
     });
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
+        if (entry.isIntersecting) entry.target.classList.add("visible");
       });
     }, { threshold: 0.08 });
 
-    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+
+    document.addEventListener("DOMContentLoaded", function () {
+      renderMathInElement(document.body, {
+        delimiters: [
+          { left: "$$", right: "$$", display: true },
+          { left: "\\[", right: "\\]", display: true },
+          { left: "\\(", right: "\\)", display: false },
+          { left: "$", right: "$", display: false }
+        ],
+        throwOnError: false
+      });
+    });
   </script>
 </body>
 </html>
