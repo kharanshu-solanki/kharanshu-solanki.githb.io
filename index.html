@@ -198,6 +198,39 @@
       margin-bottom: 1rem;
     }
 
+    .hero-intro {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.25rem;
+      margin-bottom: 0.8rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-text {
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+
+    .hero-avatar {
+      flex: 0 0 150px;
+      width: 150px;
+      height: 150px;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      background: var(--panel-strong);
+    }
+
+    .hero-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
     h1, h2, h3 {
       line-height: 1.12;
       margin-top: 0;
@@ -206,8 +239,8 @@
 
     h1 {
       font-family: "Source Serif 4", Georgia, serif;
-      font-size: clamp(3rem, 6vw, 5rem);
-      margin-bottom: 0.8rem;
+      font-size: clamp(2.45rem, 5vw, 4rem);
+      margin-bottom: 0;
     }
 
     h2 {
@@ -225,6 +258,8 @@
       color: var(--muted);
       font-size: 1.08rem;
       max-width: 65ch;
+      position: relative;
+      z-index: 1;
     }
 
     .small { font-size: 0.96rem; }
@@ -236,6 +271,8 @@
       gap: 0.8rem;
       flex-wrap: wrap;
       margin-top: 1.45rem;
+      position: relative;
+      z-index: 1;
     }
 
     .btn {
@@ -311,6 +348,8 @@
       flex-wrap: wrap;
       gap: 0.8rem;
       margin-top: 1rem;
+      position: relative;
+      z-index: 1;
     }
 
     .icon-link {
@@ -377,6 +416,16 @@
       .hero, .two { grid-template-columns: 1fr; }
       nav { align-items: flex-start; flex-direction: column; }
       .nav-links { gap: 0.7rem; }
+
+      .hero-intro {
+        align-items: flex-start;
+      }
+
+      .hero-avatar {
+        flex: 0 0 120px;
+        width: 120px;
+        height: 120px;
+      }
     }
 
     @media (max-width: 640px) {
@@ -384,6 +433,16 @@
       .stats { grid-template-columns: 1fr; }
       .wrap { width: min(var(--max), calc(100% - 1.1rem)); }
       .hero-card, .card { padding: 1.2rem; }
+
+      .hero-intro {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+      }
+
+      .hero-avatar {
+        width: 110px;
+        height: 110px;
+      }
     }
   </style>
 </head>
@@ -414,14 +473,25 @@
     <section class="hero reveal">
       <div class="hero-card">
         <div class="eyebrow">Mathematical Physics · General Relativity · Lorentzian Geometry</div>
-        <h1>Kharanshu Solanki</h1>
+
+        <div class="hero-intro">
+          <div class="hero-text">
+            <h1>Kharanshu Solanki</h1>
+          </div>
+          <div class="hero-avatar">
+            <img src="image.jpg" alt="Kharanshu Solanki portrait">
+          </div>
+        </div>
+
         <p class="lead">
           Master’s student in Physics at the University of Vienna, working on spacetime inextendibility, gravitational collapse, black holes, naked singularities, and low-regularity Lorentzian geometry.
         </p>
+
         <div class="button-row">
           <a class="btn" href="#publications">View Publications</a>
           <a class="btn secondary" href="cv.pdf" target="_blank" rel="noopener noreferrer">Download CV</a>
         </div>
+
         <div class="contact-bar">
           <a class="icon-link" href="mailto:Kharanshu.solanki1889@gmail.com">
             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg>
@@ -467,7 +537,7 @@
         </div>
 
         <div class="card profile-visual">
-          <img src="image.jpeg" alt="Kharanshu Solanki" class="profile-image">
+          <img src="image.jpg" alt="Kharanshu Solanki" class="profile-image">
         </div>
       </div>
     </section>
