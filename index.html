@@ -6,6 +6,11 @@
   <title>Kharanshu Solanki</title>
   <meta name="description" content="Personal academic website" />
 
+  <!-- Google Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
   <!-- KaTeX -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.43/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.43/dist/katex.min.js"></script>
@@ -52,7 +57,7 @@
 
     body {
       margin: 0;
-      font-family: "Times New Roman", Times, serif;
+      font-family: "Google Sans", Arial, sans-serif;
       font-size: 17px;
       background: var(--bg);
       color: var(--text);
@@ -69,8 +74,11 @@
     .eyebrow,
     .meta,
     .small,
-    .stat .meta {
-      font-family: Arial, Helvetica, sans-serif;
+    .stat .meta,
+    h1,
+    h2,
+    h3 {
+      font-family: "Google Sans", Arial, sans-serif;
     }
 
     .background-image,
@@ -118,7 +126,7 @@
     }
 
     .wrap {
-      width: min(var(--max), calc(100% - 1.2rem));
+      width: min(var(--max), calc(100% - 1.25rem));
       margin: 0 auto;
     }
 
@@ -270,7 +278,6 @@
     }
 
     h1 {
-      font-family: "Times New Roman", Times, serif;
       font-size: clamp(2.65rem, 4.8vw, 4.15rem);
       margin-bottom: 0;
       word-break: break-word;
@@ -278,14 +285,12 @@
     }
 
     h2 {
-      font-family: "Times New Roman", Times, serif;
       font-size: clamp(1.75rem, 2.55vw, 2.18rem);
       margin-bottom: 0.9rem;
       font-weight: 700;
     }
 
     h3 {
-      font-family: "Times New Roman", Times, serif;
       font-size: 1.16rem;
       margin-bottom: 0.55rem;
       font-weight: 700;
@@ -515,7 +520,7 @@
 
     @media (max-width: 640px) {
       .wrap {
-        width: min(var(--max), calc(100% - 0.85rem));
+        width: min(var(--max), calc(100% - 0.9rem));
       }
 
       body {
